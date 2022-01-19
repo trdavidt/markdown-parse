@@ -1,9 +1,15 @@
 # More Tests
 
-## File with () but not [] (infinite loop)
+# case 1
 
-[(hi)](thiswillbreak.com)
+[hi]thiswillbreak.com
 
-# File with [] but not ()
+# case 2
 
-[[hello]](thisisover.com)
+# without paran it should not print
+
+[hello]thisisover.com
+
+# case3
+
+[eeeez]peasy.html
