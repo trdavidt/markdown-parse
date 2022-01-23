@@ -20,6 +20,11 @@ public class MarkdownParse {
             // Don't continue unless there's an openBracket 
             if(nextOpenBracket == -1) break;
 
+            // If the link name has an extra right bracket, reassign nextCloseBracket
+            if(markdown.substring(nextCloseBracket + 1, nextCloseBracket + 2).equals("]")) {
+                nextCloseBracket++;
+            }
+
             // Ignore closing brackets that aren't followed by open parenthesis
             if(openParen != nextCloseBracket + 1) {                
                 currentIndex++;
