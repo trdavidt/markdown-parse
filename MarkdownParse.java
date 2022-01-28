@@ -10,30 +10,31 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-        
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);            
+            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            if(nextOpenBracket == -1) {
+                break;
+            }
             int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen); 
-
-            // Don't continue unless there's an openBracket 
-            if(nextOpenBracket == -1) break;
-
-            // If the link name has an extra right bracket, reassign nextCloseBracket
-            if(markdown.substring(nextCloseBracket + 1, nextCloseBracket + 2).equals("]")) {
-                nextCloseBracket++;
+            if(openParen > markdown.indexOf("\n", nextCloseBracket) && markdown.indexOf("\n", nextCloseBracket) != -1) {
+                openParen = -1;
+            }
+            if(openParen == -1) {
+                openParen = nextCloseBracket;
             }
 
-            // Ignore closing brackets that aren't followed by open parenthesis
-            if(openParen != nextCloseBracket + 1) {                
-                currentIndex++;
-                continue;                
+            int closeParen = markdown.indexOf(")", openParen);
+            if(closeParen > markdown.indexOf("\n", openParen) && markdown.indexOf("\n", openParen) != -1) {
+                closeParen = -1;
             }
-
+            if(closeParen == -1) {
+                closeParen = markdown.indexOf("\n", openParen);
+            }
             toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1; 
-        }        
+            // System.out.println("NOB: " + nextOpenBracket + " NCB: " + nextCloseBracket + " OP: " + openParen + " CP: " + closeParen);
+            currentIndex = closeParen + 1;
+        }
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
