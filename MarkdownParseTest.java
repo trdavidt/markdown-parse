@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import java.beans.Transient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -74,5 +76,10 @@ public class MarkdownParseTest {
     public void joesNewTestEight() throws IOException {
         assertEquals(new ArrayList<String>(), 
             MarkdownParse.getLinks(getContents("test-file8.md")));
+    }
+
+    @Test
+    public void testGitHubWorkflow() {
+        assertEquals(1, 1 + 1);
     }
 }
