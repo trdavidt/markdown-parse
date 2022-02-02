@@ -77,9 +77,9 @@ public class MarkdownParseTest {
         assertEquals(new ArrayList<String>(), 
             MarkdownParse.getLinks(getContents("test-file8.md")));
     }
-
     @Test
-    public void testGitHubWorkflow() {
-        assertEquals(1, 1 + 1);
+    public void joesNewTestNine() throws IOException {
+        assertEquals(List.of("something.com"), 
+            MarkdownParse.getLinks(getContents("test-file9.md")));
     }
 }
