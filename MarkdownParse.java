@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
@@ -54,7 +55,8 @@ public class MarkdownParse {
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
-        ArrayList<String> links = getLinks(contents);        
+        // System.out.println(contents);
+        ArrayList<String> links = getLinks(contents);
         System.out.println(links);
     }
 }

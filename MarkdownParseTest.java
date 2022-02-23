@@ -1,7 +1,5 @@
 import static org.junit.Assert.*;
 import org.junit.*;
-
-import java.beans.Transient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,13 +7,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MarkdownParseTest {
-    // Helper method to get contents of file as String given path as String
-    public static String getContents(String filePath) throws IOException {
-        Path fileName = Path.of(filePath);
-        String contents = Files.readString(fileName);
-        return contents;
-    }
-
     @Test
     public void testDefaultLinkMethod() throws IOException {
         Path fileName = Path.of("test-file.md");
@@ -41,7 +32,7 @@ public class MarkdownParseTest {
         assertEquals(List.of("thiswillbreak.com", "thisisover.com", "peasy.html"), MarkdownParse.getLinks(contents));
     }
 
-    // Tests from Joe's new repo
+    //Tests from Joe's new repos
     @Test
     public void joesNewTestTwo() throws IOException {
         assertEquals(List.of("https://something.com", "some-page.html"), 
@@ -81,5 +72,12 @@ public class MarkdownParseTest {
     public void joesNewTestNine() throws IOException {
         assertEquals(List.of("something.com"), 
             MarkdownParse.getLinks(getContents("test-file9.md")));
+    }
+    
+
+    public static String getContents(String filePath) throws IOException {
+        Path fileName = Path.of(filePath);
+        String contents = Files.readString(fileName);
+        return contents;
     }
 }
